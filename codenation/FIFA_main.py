@@ -6,9 +6,9 @@
 import csv
 
 # Parse do arquivo CSV
-with open('FIFA_data.csv', encoding='utf-8') as csv_file:
+with open('data.csv', encoding='utf-8') as csv_file:
 	csv_reader = csv.DictReader(csv_file)
-
+	
 	# Lista de OrderedDicts que será usada nos calculos
 	lista = [line for line in csv_reader]
 
