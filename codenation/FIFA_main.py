@@ -8,10 +8,9 @@ import csv
 # Parse do arquivo CSV
 with open('FIFA_data.csv', encoding='utf-8') as csv_file:
 	csv_reader = csv.DictReader(csv_file)
-
+	
 	# Lista de OrderedDicts que será usada nos calculos
 	lista = [line for line in csv_reader]
-
 
 # **Q1.** Quantas nacionalidades (coluna `nationality`) diferentes existem no arquivo?
 def q_1():
