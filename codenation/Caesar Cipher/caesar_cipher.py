@@ -78,4 +78,4 @@ answer = {'answer': open('answer.json', 'rb')}
 r = requests.post(f'https://api.codenation.dev/v1/challenge/dev-ps/submit-solution?token={TOKEN}', files=answer)
 
 print(f'\nStatus Code: {r.status_code}')
-pprint.pprint(r.text)
+pprint.pprint(f'Data: {r.text}')
