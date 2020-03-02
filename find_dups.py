@@ -1,33 +1,22 @@
 '''
-Given a sorted array of integers "a". Find the first duplicated value.
+Given an array nums containing n + 1 integers where each integer is between 1 and n (inclusive),
+prove that at least one duplicate number must exist. Assume that there is only one duplicate number, find the duplicate one.
+
+Note:
+You must not modify the array (assume the array is read only).
+You must use only constant, O(1) extra space.
+Your runtime complexity should be less than O(n2).
+There is only one duplicate number in the array, but it could be repeated more than once.
 
 Tests:
->>> a = [1,1,2,3,4]
->>> find_duplicates(a)
-1
 
->>> a = [1,2,3,4,4,5,6,7]
->>> find_duplicates(a)
-4
+>>> nums = [1,3,4,2,2]
+>>> find_duplicates(nums)
+2
 
->>> a = [1,2,3,4,5,6,7,7]
->>> find_duplicates(a)
-7
-
-Given a array of integers "a". Find the position of the first duplicated value.
-
->>> a = [4,3,2,1,1]
->>> find_duplicates_not_sorted(a)
-1
-
->>> a = [1,2,3,4,4,5,6]
->>> find_duplicates_not_sorted(a)
-4
-
->>> a = [7,2,3,1,5,4,7]
->>> find_duplicates_not_sorted(a)
-7
-
+>>> nums = [3,1,3,4,2]
+>>> find_duplicates(nums)
+3
 '''
 
 def find_duplicates(arr):
