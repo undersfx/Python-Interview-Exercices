@@ -19,5 +19,20 @@ Tests:
 3
 '''
 
-def find_duplicates(arr):
-    pass
+def find_duplicates(nums):
+    tortoise = nums[0]
+    hare = nums[0]
+
+    while True:
+        tortoise = nums[tortoise]
+        hare = nums[nums[hare]]
+        if tortoise == hare:
+            break
+
+    pointer = nums[0]
+
+    while pointer != tortoise:
+        pointer = nums[pointer]
+        tortoise = nums[tortoise]
+
+    return pointer
