@@ -1,11 +1,12 @@
 '''
-    Simples script to get host info.
+    Simple script to get host info.
 '''
 
 from urllib.request import urlopen
-from socket import gethostbyaddr
+import socket
 import pprint
 import json
+
 
 def get_host_info():
 
@@ -13,17 +14,16 @@ def get_host_info():
 
 	ipinfo = r.read().decode('utf-8')
 
-	json_info = json.loads(ipinfo)
+	response = json.loads(ipinfo)
 
 	try:
-		json_info['hostname'] = gethostbyaddr(json_info['ip'])[0]
-	except Exception as e:
-		json_info['hostname'] = str(e)
+		response['hostname'] = socket.gethostbyaddr(response['ip'])[0]
+	except socket.herror as e:
+		response['hostname'] = 'NXDOMAIN'
 
-	return json_info
+	return response
 
 
 if __name__ == "__main__":
 	r = get_host_info()
-
 	pprint.pprint(r)

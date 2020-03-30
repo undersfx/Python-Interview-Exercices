@@ -20,6 +20,8 @@ Tests:
 '''
 
 def find_duplicates(nums):
+    '''Solution using the Floyd’s Algorithm of cycle detection (Tortoise and Hare).'''
+
     tortoise = nums[0]
     hare = nums[0]
 
