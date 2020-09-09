@@ -3,9 +3,9 @@ from functools import wraps
 STDFMT = '{dia}/{mes}/{ano}'
 
 def format_date(date_format=STDFMT):
-    
+
     def decorator(func):
-        
+
         @wraps(func)
         def inner(dia, mes, ano):
             result = date_format.format(**locals())
