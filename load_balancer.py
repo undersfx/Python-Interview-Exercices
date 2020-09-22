@@ -93,10 +93,7 @@ class Server:
         self.users = list(*users)[:max_users]
 
     def add_user(self, user):
-        if len(self.users) < self.max_users:
-            self.users.append(user)
-        else:
-            raise OverflowError
+        self.users.append(user)
 
     def tick(self):
         for user in self.users:
