@@ -43,7 +43,7 @@ TTAKS = 4
 UMAX = 2
 
 class LoadBalance:
-    SERVER_CREATED_PER_TICK = 0
+    server_created_this_tick = 0
 
     def __init__(self, *servers, max_users):
         self.servers = list(*servers)
@@ -51,7 +51,7 @@ class LoadBalance:
 
     def add_server(self, server):
         self.servers.append(server)
-        self.SERVER_CREATED_PER_TICK += 1
+        self.server_created_this_tick += 1
 
     def get_free_server(self):
         for server in self.servers:
@@ -65,18 +65,23 @@ class LoadBalance:
     def get_status(self):
         total_servers = 0
         total_users = 0
+        users_status = []
 
         for server in self.servers:
             total_servers += 1
             total_users += len(server.users)
-        return f"{total_servers} servers for {total_users} users. ({self.SERVER_CREATED_PER_TICK} servers created)"
+            users_status.append(len(server.users))
+
+        # users_status = ', '.join(map(str, users_status))  # Menos legivel
+        users_status = str(users_status)[1:-1]
+        return f"{users_status}\n{total_servers} servers for {total_users} users. ({self.server_created_this_tick} servers created)"
 
     def add_user(self, user):
         server = self.get_free_server()
         server.add_user(user)
 
     def tick(self):
-        self.SERVER_CREATED_PER_TICK = 0
+        self.server_created_this_tick = 0
         for server in self.servers:
             server.tick()
         self.servers = list(filter(lambda server:server.users != [], self.servers))
@@ -116,6 +121,6 @@ if __name__ == "__main__":
             lb.add_user(Task(TTAKS))
 
         print(lb.get_status())
-        lb.tick()
         print('Tick!')
+        lb.tick()
         time.sleep(1)
