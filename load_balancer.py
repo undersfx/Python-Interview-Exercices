@@ -43,6 +43,42 @@ TTAKS = 4
 UMAX = 2
 
 class LoadBalance:
+    r"""
+    >>> lb = LoadBalance([], max_users=2)
+    >>> lb.get_status()
+    '\n0 servers for 0 users. (0 servers created)'
+
+    >>> lb.add_user(Task(4))
+    >>> lb.get_status()
+    '1\n1 servers for 1 users. (1 servers created)'
+    >>> lb.tick()
+
+    >>> lb.add_user(Task(4))
+    >>> lb.add_user(Task(4))
+    >>> lb.add_user(Task(4))
+    >>> lb.get_status()
+    '2, 2\n2 servers for 4 users. (1 servers created)'
+    >>> lb.tick()
+
+    >>> lb.get_status()
+    '2, 2\n2 servers for 4 users. (0 servers created)'
+    >>> lb.tick()
+
+    >>> lb.add_user(Task(4))
+    >>> lb.get_status()
+    '2, 2, 1\n3 servers for 5 users. (1 servers created)'
+    >>> lb.tick()
+
+    >>> lb.get_status()
+    '1, 2, 1\n3 servers for 4 users. (0 servers created)'
+    >>> lb.tick()
+
+    >>> lb.add_user(Task(4))
+    >>> lb.get_status()
+    '2\n1 servers for 2 users. (0 servers created)'
+    >>> lb.tick()
+    """
+
     server_created_this_tick = 0
 
     def __init__(self, *servers, max_users):
