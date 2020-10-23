@@ -1,31 +1,34 @@
 """
-    CLI that breaks a line longer than 40 characters on the next word.
+    Read from file and print lines shorter than n (n=40).
 """
 
 import fileinput
 
-texto = ''
 
-def quebra_linha(texto, n=40):
-    proximo_espaco = texto[n:].split(' ', 1)
-    linha = texto[:n] + proximo_espaco[0]
-    resto = proximo_espaco[1]
+def main(s, n=40):
+    linhas = []
+    k = 0
 
-    # Ignore original line breaks
-    # resto = texto[n:].split()
-    # linha = texto[:n] + resto[0]
-    # resto = ' '.join(resto[1:])
+    string_quebrada = s.split(' ')
 
-    return linha, resto
+    for palavra in string_quebrada:
+        if not linhas:
+            linhas.append(string_quebrada[0])
+            continue
 
-for line in fileinput.input():
-    texto += line
+        if len(linhas[k]) + len(palavra) < n:
+            linhas[k] += ' ' + palavra
+        else:
+            k += 1
+            linhas.append(palavra)
 
-while True:
-    if len(texto) < 40:
-        print(texto)
-        break
+    print("\n".join(linhas))
 
-    linha, resto = quebra_linha(texto)
-    print(linha)
-    texto = resto
+
+if __name__ == "__main__":
+    texto = ''
+    for line in fileinput.input(openhook=fileinput.hook_encoded("utf-8")):
+        texto += line
+    # with open('alice.txt', encoding='UTF-8') as f:
+    #     texto = f.read()
+    main(texto)
