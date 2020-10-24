@@ -34,13 +34,11 @@ def is_isomorphic(s, t):
         return False
 
     correspondencia = {}
-    for key, char in enumerate(t):
-        if char != s[key]:
-            if not char in correspondencia.keys():
-                correspondencia[char] = s[key]
+    for letra_s, letra_t in zip(s, t):
+        if letra_s != letra_t and letra_t not in correspondencia.keys():
+            correspondencia[letra_t] = letra_s
 
     if len(correspondencia.keys()) != len(set(correspondencia.values())):
         return False
 
     return True
-
