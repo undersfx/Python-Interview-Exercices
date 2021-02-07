@@ -12,7 +12,7 @@ gen = (i for i in range(tamanho))
 print('{} done in {:.2f} secs.\n'.format(type(gen), time.time() - start))
 
 time.sleep(1)
-print('Looping test:\n')
+print('Looping test:')
 
 start = time.time()
 print('Looping through list comp')
@@ -20,7 +20,7 @@ print('Looping through list comp')
 for n in list_comp:
     pass
 
-print('Done in {:.2f} secs.\n'.format(time.time() - start))
+print('Done in {:.2f} secs.'.format(time.time() - start))
 
 start = time.time()
 print('Looping through generator')

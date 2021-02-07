@@ -29,6 +29,9 @@ if __name__ == "__main__":
     texto = ''
     for line in fileinput.input(openhook=fileinput.hook_encoded("utf-8")):
         texto += line
+
+    # Test
     # with open('alice.txt', encoding='UTF-8') as f:
     #     texto = f.read()
+
     main(texto)
