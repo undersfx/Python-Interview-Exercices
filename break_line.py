@@ -1,22 +1,40 @@
 """
-    Read from file and print lines shorter than n (n=40).
+    - Read from a text file (alice.txt) and print lines in a lenght of N.
+
+    - No word should be broken in different lines, this means, If the n-th is
+    in the middle of a word, the complete word should be printed in the same line.
 """
 
-import fileinput
+def break_lines(string, n=40, strip_original_linebreaks=True):
+    '''
+    >>> break_lines('asdf asdf', 6)
+    asdf asdf
 
+    >>> break_lines('asdf asdf', 4)
+    asdf
+    asdf
 
-def main(s, n=40):
+    >>> break_lines('a s d f', 1)
+    a
+    s
+    d
+    f
+    '''
+
     linhas = []
     k = 0
 
-    string_quebrada = s.split(' ')
+    if strip_original_linebreaks:
+        string = string.replace('\n', ' ')
+
+    string_quebrada = string.split(' ')
 
     for palavra in string_quebrada:
         if not linhas:
             linhas.append(string_quebrada[0])
             continue
 
-        if len(linhas[k]) + len(palavra) < n:
+        if len(linhas[k]) + 1 < n:
             linhas[k] += ' ' + palavra
         else:
             k += 1
@@ -26,12 +44,7 @@ def main(s, n=40):
 
 
 if __name__ == "__main__":
-    texto = ''
-    for line in fileinput.input(openhook=fileinput.hook_encoded("utf-8")):
-        texto += line
+    with open('alice.txt', encoding='UTF-8') as f:
+        texto = f.read()
 
-    # Test
-    # with open('alice.txt', encoding='UTF-8') as f:
-    #     texto = f.read()
-
-    main(texto)
+    break_lines(texto, 40)
