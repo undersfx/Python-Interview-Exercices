@@ -29,6 +29,10 @@ def for_loop_minmax(lista: list) -> tuple:
     >>> for_loop_minmax([0])
     (0, 0)
 
+    >>> for_loop_minmax([])
+    Traceback (most recent call last):
+        ...
+    ValueError: Lista vazia
 
     Complexidade de Tempo:
     4 atribuições   -> f(n) = c -> 1
@@ -73,6 +77,11 @@ def recursive_minmax(lista) -> tuple:
 
     >>> recursive_minmax([0])
     (0, 0)
+
+    >>> recursive_minmax([])
+    Traceback (most recent call last):
+        ...
+    ValueError: Lista vazia
 
     Complexidade de Tempo:
     2n comparações      -> f(n) = 2n -> n
@@ -125,6 +134,11 @@ def tail_recursive_minmax(lista: list) -> tuple:
     >>> tail_recursive_minmax([0])
     (0, 0)
 
+    >>> tail_recursive_minmax([])
+    Traceback (most recent call last):
+        ...
+    ValueError: Lista vazia
+
     Complexidade de Tempo:
     2n comparações      -> f(n) = 2n -> n
     4n atribuições      -> f(n) = 4n -> n
@@ -141,6 +155,9 @@ def tail_recursive_minmax(lista: list) -> tuple:
     Total: f(n) = 2 + n -> O(1)
     """
     def _tail_recursive_minmax(lista, pos, _min, _max):
+        if len(lista) == 0:
+            raise ValueError('Lista vazia')
+
         if pos == len(lista):
             return _min, _max
 
