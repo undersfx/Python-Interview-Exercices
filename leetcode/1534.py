@@ -35,6 +35,7 @@ Tests:
 """
 
 from typing import List
+from itertools import combinations, count
 
 
 def count_good_triplets(arr: List[int], a: int, b: int, c: int) -> int:
@@ -47,4 +48,17 @@ def count_good_triplets(arr: List[int], a: int, b: int, c: int) -> int:
                 and abs(arr[j] - arr[k]) <= b \
                 and abs(arr[i] - arr[k]) <= c:
                     count += 1
+    return count
+
+
+
+def count_good_triplets_itertools(arr: List[int], a: int, b: int, c: int) -> int:
+    count = 0
+    comb = combinations(arr, 3)
+    for item in comb:
+        i, j, k = item
+        if abs(i - j) <= a \
+        and abs(j - k) <= b \
+        and abs(i - k) <= c:
+            count += 1
     return count
