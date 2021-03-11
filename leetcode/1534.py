@@ -2,7 +2,8 @@
 Given an array of integers arr, and three integers a, b and c.
 You need to find the number of good triplets.
 
-A triplet (arr[i], arr[j], arr[k]) is good if the following conditions are true:
+A triplet (arr[i], arr[j], arr[k]) is good if the following
+conditions are true:
 
 1. 0 <= i < j < k < arr.length
 2. |arr[i] - arr[j]| <= a
@@ -35,7 +36,7 @@ Tests:
 """
 
 from typing import List
-from itertools import combinations, count
+from itertools import combinations
 
 
 def count_good_triplets(arr: List[int], a: int, b: int, c: int) -> int:
@@ -45,20 +46,21 @@ def count_good_triplets(arr: List[int], a: int, b: int, c: int) -> int:
         for j in range(i + 1, n):
             for k in range(j + 1, n):
                 if abs(arr[i] - arr[j]) <= a \
-                and abs(arr[j] - arr[k]) <= b \
-                and abs(arr[i] - arr[k]) <= c:
+                    and abs(arr[j] - arr[k]) <= b \
+                        and abs(arr[i] - arr[k]) <= c:
                     count += 1
     return count
 
 
-
-def count_good_triplets_itertools(arr: List[int], a: int, b: int, c: int) -> int:
+def count_good_triplets_itertools(
+            arr: List[int], a: int, b: int, c: int
+        ) -> int:
     count = 0
     comb = combinations(arr, 3)
     for item in comb:
         i, j, k = item
         if abs(i - j) <= a \
-        and abs(j - k) <= b \
-        and abs(i - k) <= c:
+            and abs(j - k) <= b \
+                and abs(i - k) <= c:
             count += 1
     return count

@@ -16,6 +16,7 @@ Tests:
 '255[.]100[.]50[.]0'
 """
 
+
 def defang_IP_addr(address: str) -> str:
     return address.replace('.', '[.]')
 
