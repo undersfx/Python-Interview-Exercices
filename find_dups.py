@@ -38,22 +38,3 @@ def find_duplicates(nums):
         tortoise = nums[tortoise]
 
     return pointer
-
-
-def find_duplicates_clearer(nums):
-    '''Solution using the Floyd’s Algorithm of cycle detection (Tortoise and Hare).'''
-
-    tortoise = 0
-    hare = 0
-
-    while True:
-        tortoise += 1
-        hare += 2
-
-        tortoise = tortoise % len(nums)
-        hare = hare % len(nums)
-
-        if nums[tortoise] == nums[hare]:
-            break
-
-    return nums[tortoise]
