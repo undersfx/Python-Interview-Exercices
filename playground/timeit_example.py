@@ -1,3 +1,7 @@
+"""
+    Performance comparison of for loop against list comprehentions in python using timeit module
+"""
+
 import timeit
 
 def list_for():

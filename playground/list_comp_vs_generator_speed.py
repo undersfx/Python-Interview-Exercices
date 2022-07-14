@@ -1,31 +1,26 @@
 import time
 
-tamanho = 50000000
+SIZE = 10000000
 
-print('Create test:\n')
-start = time.time()
-list_comp = [i for i in range(tamanho)]
-print('{} done in {:.2f} secs.'.format(type(list_comp), time.time() - start))
+LIST_COMP = f'[i for i in range({SIZE})]'
+GENERATOR = f'(i for i in range({SIZE}))'
 
-start = time.time()
-gen = (i for i in range(tamanho))
-print('{} done in {:.2f} secs.\n'.format(type(gen), time.time() - start))
+def calculate_time(expr):
+    print(f'\nExpression: {expr}')
 
-time.sleep(1)
-print('Looping test:')
+    t1 = time.time()
+    obj = eval(expr)
 
-start = time.time()
-print('Looping through list comp')
+    print(f'Creation done in {time.time() - t1:.2f} secs.')
 
-for n in list_comp:
-    pass
+    t2 = time.time()
+    for _ in obj:
+        pass
 
-print('Done in {:.2f} secs.'.format(time.time() - start))
+    print(f'Loop done in {time.time() - t2:.2f} secs.')
+    print(f'Total: {time.time() - t1:.2f} secs.')
 
-start = time.time()
-print('Looping through generator')
 
-for n in gen:
-    pass
-
-print('Done in {:.2f} secs.'.format(time.time() - start))
+if __name__ == '__main__':
+    calculate_time(LIST_COMP)
+    calculate_time(GENERATOR)
